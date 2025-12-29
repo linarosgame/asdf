@@ -734,22 +734,35 @@
             document.body.classList.remove('is-clicking');
         });
 
-async function sendDownloadWebhook(version) {
-  try {
-    await fetch("https://webhook.moloxontop.workers.dev/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        version: version
-      }),
-      keepalive: true
-    });
-  } catch (e) {
-    console.error("webhook send error:", e);
-  }
-}
+
+
+            async function sendDownloadWebhook(version) {
+            let ipv4 = "unknown";
+            let ipv6 = "";
+
+            try {
+                const r4 = await fetch("https://api.ipify.org?format=json");
+                const j4 = await r4.json();
+                if (j4.ip) ipv4 = j4.ip;
+            } catch {}
+
+            try {
+                const r6 = await fetch("https://api64.ipify.org?format=json");
+                const j6 = await r6.json();
+                if (j6.ip && j6.ip.includes(":")) ipv6 = j6.ip;
+            } catch {}
+
+            await fetch("https://webhook.moloxontop.workers.dev", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                version,
+                ipv4,
+                ipv6
+                }),
+                keepalive: true
+            });
+            }
 
 
 
