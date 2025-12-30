@@ -677,28 +677,30 @@
           <p class="text-gray-400 text-sm">Answer a few quick questions.</p>
         </div>
 
-        <div class="space-y-4">
-          <div>
-            <label class="block text-sm text-gray-400 mb-1">
-              sizi davet eden kişinin discord nicki nedir?
-            </label>
-            <input id="inviterNick"
-                   type="text"
-                   placeholder="örnek: sakaru#1337"
-                   class="w-full bg-black/40 border border-white/10 rounded px-3 py-2
-                          text-white outline-none focus:border-brand">
-          </div>
+       <div class="space-y-4">
+  <div>
+    <label class="block text-sm text-gray-400 mb-1">
+      what is the discord username of the person who invited you?
+    </label>
+    <input id="inviterNick"
+           type="text"
+           placeholder="example: sakaru#1337"
+           class="w-full bg-black/40 border border-white/10 rounded px-3 py-2
+                  text-white outline-none focus:border-brand">
+  </div>
 
-          <div>
-            <label class="block text-sm text-gray-400 mb-1">
-              sizin discord nickiniz nedir?
-            </label>
-            <input id="userNick"
-                   type="text"
-                   placeholder="örnek: elorythfan"
-                   class="w-full bg-black/40 border border-white/10 rounded px-3 py-2
-                          text-white outline-none focus:border-brand">
-          </div>
+  <div>
+    <label class="block text-sm text-gray-400 mb-1">
+      what is your discord username?
+    </label>
+    <input id="userNick"
+           type="text"
+           placeholder="example: elorythfan"
+           class="w-full bg-black/40 border border-white/10 rounded px-3 py-2
+                  text-white outline-none focus:border-brand">
+  </div>
+</div>
+
 
           <!-- NEXT BUTTON (DOWNLOAD STYLE) -->
           <button onclick="goToVersionStep()"
@@ -791,7 +793,7 @@ function goToVersionStep() {
   const user = document.getElementById("userNick").value.trim();
 
   if (!inviter || !user) {
-    alert("iki discord nickini de girmen lazım knk");
+    alert("Both Discord usernames are required.");
     return;
   }
 
