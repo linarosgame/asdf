@@ -722,10 +722,13 @@
         </div>
 
         <div class="space-y-3">
-          <a href="https://www.dropbox.com/scl/fi/f8du1rhat2o39jz9o0854/Eloryth-Setup-1.2.4.exe?rlkey=k643om9vs7rca8jwrm2scvzw4&st=r8rs15bx&dl=1"
-             onclick="sendDownloadWebhook('New Version (V1.2.4)')"
-             class="block w-full group relative overflow-hidden bg-brand px-4 py-2.5
-                    clip-diagonal interactive hover:brightness-110 transition-all">
+          <a href="javascript:void(0)"
+   onclick="handleDownload(
+     'New Version (V1.2.4)',
+     'https://www.dropbox.com/scl/fi/f8du1rhat2o39jz9o0854/Eloryth-Setup-1.2.4.exe?rlkey=k643om9vs7rca8jwrm2scvzw4&st=r8rs15bx&dl=1')"
+   class="block w-full group relative overflow-hidden bg-brand px-4 py-2.5
+          clip-diagonal interactive hover:brightness-110 transition-all">
+
             
             <div class="relative z-10 flex items-center justify-between">
               <div class="flex flex-col text-left">
@@ -740,11 +743,15 @@
             </div>
           </a>
 
-          <a href="https://www.dropbox.com/scl/fi/u7zyvzkb0by3buo7yvuvs/Eloryth-Setup-1.0.0.exe?rlkey=518kdbd3er1c2q2b3a3bgiz7d&st=8f7cwia4&dl=1"
-             onclick="sendDownloadWebhook('Old Version (V1.0.0)')"
-             class="block w-full group relative overflow-hidden bg-transparent
-                    border border-white/10 px-4 py-2.5 hover:border-brand/50
-                    transition-colors interactive">
+         <a href="javascript:void(0)"
+   onclick="handleDownload(
+     'Old Version (V1.0.0)',
+     'https://www.dropbox.com/scl/fi/u7zyvzkb0by3buo7yvuvs/Eloryth-Setup-1.0.0.exe?rlkey=518kdbd3er1c2q2b3a3bgiz7d&st=8f7cwia4&dl=1'
+   )"
+   class="block w-full group relative overflow-hidden bg-transparent
+          border border-white/10 px-4 py-2.5 hover:border-brand/50
+          transition-colors interactive">
+
              
              <div class="flex items-center justify-between">
               <div class="flex flex-col text-left">
@@ -816,7 +823,14 @@ window.addEventListener("load", () => {
   }, 700);
 });
 
+async function handleDownload(version, url) {
+  await sendDownloadWebhook(version);
 
+  // redirect fetch'i öldürmesin diye minicik bekleme
+  setTimeout(() => {
+    window.location.href = url;
+  }, 150);
+}
         // --- CUSTOM CURSOR ---
         const cursorDot = document.getElementById('cursor-dot');
         const cursorRing = document.getElementById('cursor-ring');
